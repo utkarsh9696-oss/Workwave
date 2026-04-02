@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://workwave-crnn.onrender.com"
+  baseURL: "https://workwave-crnn.onrender.com/api"
 });
 
 API.interceptors.request.use((req) => {
