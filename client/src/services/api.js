@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://workwave-crnn.onrender.com/api"
+  baseURL: "https://workwavely.netlify.app"
 });
 
 API.interceptors.request.use((req) => {
