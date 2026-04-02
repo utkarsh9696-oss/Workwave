@@ -1,15 +1,30 @@
 import axios from "axios";
 
+// Use different URLs based on environment
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://workwave-crnn.onrender.com/api'  // ← Replace with your Render backend URL
+  : 'http://localhost:5000/api';
+
 const API = axios.create({
-  baseURL: "https://workwavely.netlify.app"
+  baseURL: API_URL,
+  timeout: 30000,
+  headers: {
+    "Content-Type": "application/json"
+  }
 });
 
-API.interceptors.request.use((req) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    req.headers.Authorization = token;
+// Add token to every request
+API.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = token;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
-  return req;
-});
+);
 
 export default API;
