@@ -1,12 +1,8 @@
 import axios from "axios";
 
-// Use different URLs based on environment
-const API_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://workwave-crnn.onrender.com/api'  // ← Replace with your Render backend URL
-  : 'http://localhost:5000/api';
-
+// Use your Render backend URL
 const API = axios.create({
-  baseURL: API_URL,
+  baseURL: "https://workwave-crnn.onrender.com/api",  // ← Your Render backend URL
   timeout: 30000,
   headers: {
     "Content-Type": "application/json"
@@ -20,6 +16,7 @@ API.interceptors.request.use(
     if (token) {
       config.headers.Authorization = token;
     }
+    console.log("API Request:", config.baseURL + config.url);
     return config;
   },
   (error) => {
