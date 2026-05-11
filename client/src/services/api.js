@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Use your Render backend URL
 const API = axios.create({
-  baseURL: "https://workwave-crnn.onrender.com/api",  // ← Your Render backend URL
+ baseURL: "https://workwave-1-2t83.onrender.com/api",  // ← Your Render backend URL
   timeout: 30000,
   headers: {
     "Content-Type": "application/json"
